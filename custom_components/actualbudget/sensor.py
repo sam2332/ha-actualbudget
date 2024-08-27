@@ -86,6 +86,7 @@ async def async_setup_entry(
             password,
             file,
             cert,
+            currency,
             encrypt_password,
             budget.name,
             budget.amounts,
@@ -192,6 +193,7 @@ class actualbudgetBudgetSensor(SensorEntity):
         password: str,
         file: str,
         cert: str,
+        currency: str,
         encrypt_password: str | None,
         name: str,
         amounts: List[BudgetAmount],
@@ -209,7 +211,7 @@ class actualbudgetBudgetSensor(SensorEntity):
         self._encrypt_password = encrypt_password
 
         self._icon = DEFAULT_ICON
-        self._unit_of_measurement = UNIT_OF_MEASUREMENT
+        self._unit_of_measurement = currency
         self._device_class = SensorDeviceClass.MONETARY
         self._state_class = SensorStateClass.MEASUREMENT
         self._available = True

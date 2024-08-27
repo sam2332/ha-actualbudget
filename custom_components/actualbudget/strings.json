@@ -11,7 +11,7 @@
           "encrypt_password": "encrypt password",
           "file": "file id",
           "cert": "certificate",
-          "currency": "usd"
+          "currency": "usd or eur"
         },
         "data_description": {
           "endpoint": "The endpoint of the actualbudget server",

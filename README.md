@@ -37,7 +37,6 @@ Note: If this is not in HACS yet, you can add this repository manually.
 | Encrypt Password | No    | The password to decrypt the Actual Budget file (if set) |
 | File          | Yes       | The file id of the Actual Budget file |
 | Cert          | No        | The certificate to use for the connection |
-| Currency      | Yes        | |
 
 Example:
 
