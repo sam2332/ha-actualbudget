@@ -173,10 +173,7 @@ class actualbudgetAccountSensor(SensorEntity):
             api = self._api
             account = await api.get_account(self._name)
             if account:
-                # last two digits are cents
-                new_balance = str(account.balance)[-2:]
-                new_balance = f"{str(account.balance)[:-2]}.{new_balance}"
-                self._state = new_balance
+                self._state = account.balance
         except Exception as err:
             self._available = False
             _LOGGER.exception(
@@ -233,11 +230,25 @@ class actualbudgetBudgetSensor(SensorEntity):
     def available(self) -> bool:
         """Return True if entity is available."""
         return self._available
-
+    
     @property
     def state(self) -> float:
         current_month = self._amounts[-1]
-        return current_month.amount
+        output = current_month.amount
+        logging.error(f"o amount: {output}")
+        # Convert the amount to a string and separate into dollars and cents
+        output_str = str(output)
+        logging.error(f"o amount str: {output_str}")
+        output_str = output_str.split(".")
+        output_str = output_str[0]
+        dollars = output_str[:-2]
+        cents = output_str[-2:]
+        logging.error(f"dollars: {dollars} cents: {cents}")
+        output = dollars + "." + cents
+        logging.error(f"output text: {output}")
+        output = float(output)
+        logging.error(f"output float: {output}")
+        return float(output)
 
     @property
     def device_class(self):
@@ -277,12 +288,8 @@ class actualbudgetBudgetSensor(SensorEntity):
         try:
             api = self._api
             budget = await api.get_budget(self._name)
-            if budget: 
-                new_balance = str(budget.amounts)
-                cents = new_balance[-2:]
-                new_balance = f"{str(budget.amounts)[:-2]}.{cents}"
-                new_balance = float(new_balance)
-                self._amounts = new_balance
+            if budget:
+                self._amounts = budget.amounts
         except Exception as err:
             self._available = False
             _LOGGER.exception(
