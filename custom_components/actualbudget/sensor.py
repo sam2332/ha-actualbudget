@@ -278,8 +278,8 @@ class actualbudgetBudgetSensor(SensorEntity):
             api = self._api
             budget = await api.get_budget(self._name)
             if budget: 
-                new_balance = str(account.balance)[-2:]
-                new_balance = f"{str(account.balance)[:-2]}.{new_balance}"
+                new_balance = str(budget.balance)[-2:]
+                new_balance = f"{str(budget.balance)[:-2]}.{new_balance}"
                 self._amounts = float(new_balance)
         except Exception as err:
             self._available = False
