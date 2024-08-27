@@ -11,13 +11,15 @@
           "encrypt_password": "palavra-passe de encriptação",
           "file": "id do ficheiro",
           "cert": "certificado"
+          "currency": "usd ou eur"
         },
         "data_description": {
           "endpoint": "O endpoint do servidor actualbudget",
           "password": "A palavra-passe do servidor actualbudget",
           "encrypt_password": "A palavra-passe para encriptar o ficheiro actualbudget",
           "file": "O id do ficheiro do servidor actualbudget",
-          "cert": "O certificado do servidor actualbudget, escreva 'SKIP' para ignorar a validação do certificado"
+          "cert": "O certificado do servidor actualbudget, escreva 'SKIP' para ignorar a validação do certificado",
+          "currency": "A moeda do servidor actualbudget"
         }
       }
     },
