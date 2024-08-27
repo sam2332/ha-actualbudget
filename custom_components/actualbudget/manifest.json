@@ -2,7 +2,8 @@
   "domain": "actualbudget",
   "name": "actualbudget Integration",
   "codeowners": [
-    "@jlvcm"
+    "@jlvcm",
+    "@sam2332"
   ],
   "config_flow": true,
   "dependencies": [],

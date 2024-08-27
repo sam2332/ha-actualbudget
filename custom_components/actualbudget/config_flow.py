@@ -54,6 +54,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         password = user_input[CONFIG_PASSWORD]
         file = user_input[CONFIG_FILE]
         cert = user_input.get(CONFIG_CERT)
+        currency = user_input.get(CONFIG_UNIT_OF_MEASUREMENT)
         encrypt_password = user_input.get(CONFIG_ENCRYPT_PASSWORD)
         if cert == "SKIP":
             cert = False

@@ -22,7 +22,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .const import (
     DEFAULT_ICON,
     DOMAIN,
-    UNIT_OF_MEASUREMENT,
+    CONFIG_UNIT_OF_MEASUREMENT,
     CONFIG_ENDPOINT,
     CONFIG_PASSWORD,
     CONFIG_FILE,
@@ -49,9 +49,11 @@ async def async_setup_entry(
     password = config[CONFIG_PASSWORD]
     file = config[CONFIG_FILE]
     cert = config.get(CONFIG_CERT)
+    cert = config.get(CONFIG_CERT)
     if cert == "SKIP":
         cert = False
     encrypt_password = config.get(CONFIG_ENCRYPT_PASSWORD)
+    currency = config.get(CONFIG_UNIT_OF_MEASUREMENT)
     api = ActualBudget(hass, endpoint, password, file, cert, encrypt_password)
 
     domain = urlparse(endpoint).hostname
@@ -66,6 +68,7 @@ async def async_setup_entry(
             password,
             file,
             cert,
+            currency,
             encrypt_password,
             account.name,
             account.balance,
@@ -103,6 +106,7 @@ class actualbudgetAccountSensor(SensorEntity):
         password: str,
         file: str,
         cert: str,
+        currency: str,
         encrypt_password: str | None,
         name: str,
         balance: float,
@@ -120,7 +124,7 @@ class actualbudgetAccountSensor(SensorEntity):
         self._encrypt_password = encrypt_password
 
         self._icon = DEFAULT_ICON
-        self._unit_of_measurement = UNIT_OF_MEASUREMENT
+        self._unit_of_measurement = currency
         self._device_class = SensorDeviceClass.MONETARY
         self._state_class = SensorStateClass.MEASUREMENT
         self._state = None
