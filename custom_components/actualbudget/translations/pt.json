@@ -10,7 +10,7 @@
           "password": "palavra-passe",
           "encrypt_password": "palavra-passe de encriptação",
           "file": "id do ficheiro",
-          "cert": "certificado"
+          "cert": "certificado",
           "currency": "usd ou eur"
         },
         "data_description": {
