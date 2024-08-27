@@ -173,7 +173,10 @@ class actualbudgetAccountSensor(SensorEntity):
             api = self._api
             account = await api.get_account(self._name)
             if account:
-                self._state = account.balance
+                # last two digits are cents
+                new_balance = str(account.balance)[-2:]
+                new_balance = f"{str(account.balance)[:-2]}.{new_balance}"
+                self._state = new_balance
         except Exception as err:
             self._available = False
             _LOGGER.exception(
